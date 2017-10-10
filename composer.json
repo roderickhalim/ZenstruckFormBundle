@@ -26,7 +26,7 @@
         "zendframework/zend-crypt": "Required when using the ajax entity type 'use_controller' option. Version: ~2.0,!=2.1.1"
     },
     "autoload": {
-        "psr-0": { "Zenstruck\\Bundle\\FormBundle": "" }
+        "psr-4": { "Zenstruck\\Bundle\\FormBundle": "" }
     },
     "extra": {
         "branch-alias": {
