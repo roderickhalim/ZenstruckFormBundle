@@ -10,12 +10,13 @@
     </parameters>
 
     <services>
-        <service id="zenstruck_form.ajax_entity_manager" class="%zenstruck_form.ajax_entity_manager.class%">
+        <service id="zenstruck_form.ajax_entity_manager" class="%zenstruck_form.ajax_entity_manager.class%" public="true">
             <argument type="service" id="doctrine" />
             <argument>%kernel.secret%</argument>
         </service>
 
-        <service id="zenstruck_form.ajax_entity_controller" class="%zenstruck_form.ajax_entity_controller.class%">
+        <service id="zenstruck_form.ajax_entity_controller" class="%zenstruck_form.ajax_entity_controller.class%" public="true">
+            <tag name="controller.service_arguments"></tag>
             <argument type="service" id="zenstruck_form.ajax_entity_manager" />
         </service>
     </services>
