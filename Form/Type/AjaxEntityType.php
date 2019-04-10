@@ -4,12 +4,13 @@ namespace Zenstruck\Bundle\FormBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\Exception\MissingOptionsException;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Serializer;
@@ -98,7 +99,7 @@ class AjaxEntityType extends AbstractType
         }
 
         $view->vars['attr']['data-placeholder'] = $options['placeholder'];
-        
+
         $view->vars['attr']['data-minimum-input-length'] = $options['minimum_input_length'];
 
         $extraData = $options['extra_data'];
@@ -107,7 +108,7 @@ class AjaxEntityType extends AbstractType
         $view->vars['attr']['data-extra-data'] = $serializer->serialize($extraData, 'json');
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setRequired(array('class'));
         $resolver->setDefaults(array(
@@ -124,7 +125,7 @@ class AjaxEntityType extends AbstractType
 
     public function getParent()
     {
-        return 'text';
+        return TextType::class;
     }
 
     public function getName()
